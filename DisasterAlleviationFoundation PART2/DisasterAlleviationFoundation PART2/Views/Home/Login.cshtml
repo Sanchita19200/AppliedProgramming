@@ -1,0 +1,84 @@
+﻿@model DisasterAlleviationFoundation.Models.UserProfileModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75vh;
+    }
+
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .register-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .register-link .btn-dark:hover {
+            color: purple;
+            background-color: mediumpurple;
+            border-color: white;
+        }
+</style>
+
+<h1 class="text-center">Login</h1>
+
+<div class="center-container">
+    <div class="login-form">
+        <h4 class="text-center">Registered Users Only</h4>
+        <hr />
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group text-center">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            <br />
+            <div class="register-link text-center">
+                <h5>
+                    Not a member? Register
+                    <br />
+                    <br />
+                    <button class="btn btn-dark" onclick="location.href='@Url.Action("Register", "Home")'">Here</button>
+                </h5>
+            </div>
+            <br />
+            <h2 class="text-center">
+                Forgot Password 
+                <br />
+               
+                <button class="btn btn-dark" onclick="location.href='@Url.Action("", "")'">Here</button>
+            </h2>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

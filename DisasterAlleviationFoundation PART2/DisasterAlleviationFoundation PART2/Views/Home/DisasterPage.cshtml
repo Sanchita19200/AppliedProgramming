@@ -1,0 +1,96 @@
+﻿@model DisasterAlleviationFoundation.Models.DisasterModel
+
+@{
+    ViewData["Title"] = "DisasterPage";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Disaster Alleviation Foundation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Add other style links if needed -->
+</head>
+<body>
+    <h1>Report Disaster</h1>
+    <h4>"Empower Resilience, Report Disaster: Your Voice Sparks Aid, Your Action Fuels Hope!"</h4>
+    <hr />
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="DisasterPage">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Disaster Name -->
+                    <div class="form-group">
+                        <label asp-for="DisasterName" class="control-label"> Enter Disaster Name</label>
+                        <input asp-for="DisasterName" class="form-control" />
+                        <span asp-validation-for="DisasterName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Disaster Description -->
+                    <div class="form-group">
+                        <label asp-for="DisasterDescription" class="control-label">Enter the Disaster Description</label>
+                        <input asp-for="DisasterDescription" class="form-control" />
+                        <span asp-validation-for="DisasterDescription" class="text-danger"></span>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label">Enter the disaster Location</label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <!-- Aid Type -->
+                    <div class="form-group">
+                        <label asp-for="AidType" class="control-label">Enter the type of Aid needed</label>
+                        <select asp-for="AidType" class="form-control">
+                            <option value="WaterProvision">Water provision</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Food">Food</option>
+                            <option value="MedicalSupplies">Medical supplies</option>
+                            <option value="ShelterProvision">Shelter provision</option>
+                        </select>
+                        <span asp-validation-for="AidType" class="text-danger"></span>
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label">Select Disaster Start Date</label>
+                        <input asp-for="StartDate" class="form-control" type="date" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label">Select The End Date</label>
+                        <input asp-for="EndDate" class="form-control" type="date" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <input type="submit" value="Report the disaster" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="text-center">
+        <a asp-action="Home">Back to Home</a>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* Add other script references if needed *@
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // JavaScript code can be added here
+    </script>
+</body>
+</html>

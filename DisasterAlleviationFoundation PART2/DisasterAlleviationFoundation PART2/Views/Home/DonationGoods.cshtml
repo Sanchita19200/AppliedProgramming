@@ -1,0 +1,136 @@
+﻿@model DisasterAlleviationFoundation.Models.GoodsDonationModel
+
+@{
+    ViewData["Title"] = "DonationGoods";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Disaster Alleviation Foundation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <h1 class="text-center">Goods Donation</h1>
+
+    <h4 class="text-center">"Spark Change, Share Hope: Your Goods Can Make a Difference! Donate Today and Be the Beacon of Support in Times of Need."</h4>
+    <hr />
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <form id="donationForm" asp-action="DonationGoods" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="numberofItems" class="control-label">Number of Items</label>
+                        <input asp-for="numberofItems" class="form-control" type="number" />
+                        <span asp-validation-for="numberofItems" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Goodname" class="control-label">Enter Item Name</label>
+                        <input asp-for="Goodname" class="form-control" />
+                        <span asp-validation-for="Goodname" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Gooddescription" class="control-label">Enter Item Description</label>
+                        <input asp-for="Gooddescription" class="form-control" />
+                        <span asp-validation-for="Gooddescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Donator Type</label><br />
+                        <label>
+                            <input type="radio" asp-for="IsAnonymous" value="true" checked /> Anonymous
+                        </label>
+                        <label>
+                            <input type="radio" asp-for="IsAnonymous" value="false" /> Username
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Please choose what category does your product fall under</label><br />
+                        <label>
+                            <input type="radio" asp-for="category" value="Clothes" /> Clothes
+                        </label><br />
+                        <label>
+                            <input type="radio" asp-for="category" value="Perishable" /> Perishable Goods
+                        </label><br />
+                       
+                        <label>
+                            <input type="radio" asp-for="category" value="Custom" /> Custom Category
+                        </label>
+                    </div>
+
+                    <div class="form-group" id="customCategoryInput" style="display:none;">
+                        <label asp-for="customCategory">Custom Category</label>
+                        <input asp-for="customCategory" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label">Date</label>
+                        <input asp-for="Date" class="form-control" type="date" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input type="button" value="Donate" class="btn btn-primary" onclick="submitAndClearForm()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a asp-action="Home">Back to home</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        <script>
+            function submitAndClearForm() {
+                var form = $('#donationForm');
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function (response) {
+                        console.log("Form submitted successfully!");
+                    },
+                    error: function (error) {
+                        console.error("Error submitting form: ", error);
+                    },
+                    complete: function () {
+                        clearForm();
+                    }
+                });
+            }
+
+            function clearForm() {
+                var form = document.getElementById('donationForm');
+                form.reset();
+
+                var customCategoryInput = document.getElementById("customCategoryInput");
+                customCategoryInput.style.display = "none";
+            }
+
+            document.querySelectorAll('input[name="category"]').forEach(function (radio) {
+                radio.addEventListener('change', function () {
+                    var customCategoryInput = document.getElementById("customCategoryInput");
+                    customCategoryInput.style.display = this.value === "Custom" ? "block" : "none";
+                });
+            });
+        </script>
+    }
+</body>
+</html>

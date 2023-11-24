@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DisasterAlleviationFoundation.Models.DisasterModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incoming Donation of Goods</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: linear-gradient(to right, #9932CC, #BA55D3);
+            color: white;
+            border-radius: 8px;
+            opacity: 0.7; /* Adjust the opacity as needed */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        thead {
+            background-color: #FF8C00;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #BA55D3;
+        }
+
+        tbody tr:hover {
+            background-color: #FF8C00;
+            transition: background-color 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+            a:hover {
+                color: white;
+            }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Incoming Disasters</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.DID)</th>
+                <th>@Html.DisplayNameFor(model => model.DisasterName)</th>
+                <th>@Html.DisplayNameFor(model => model.DisasterDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.Location)</th>
+                <th>@Html.DisplayNameFor(model => model.AidType)</th>
+                <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+                <th>@Html.DisplayNameFor(model => model.EndDate)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.DID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DisasterName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DisasterDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AidType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EndDate)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        <a asp-action="AdminHome">Back to Dashboard</a>
+    </p>
+</body>
+</html>

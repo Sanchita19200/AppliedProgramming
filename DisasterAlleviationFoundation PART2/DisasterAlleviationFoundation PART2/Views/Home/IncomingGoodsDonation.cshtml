@@ -1,0 +1,105 @@
+﻿@model IEnumerable<DisasterAlleviationFoundation.Models.GoodsDonationModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incoming Donation of Goods</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: linear-gradient(to right, #9932CC, #BA55D3);
+            color: white;
+            border-radius: 8px;
+            opacity: 0.7;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        thead {
+            background-color: #FF8C00;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #BA55D3;
+        }
+
+        tbody tr:hover {
+            background-color: #FF8C00;
+            transition: background-color 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+            a:hover {
+                color: white;
+            }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Incoming Donation of Goods</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.GID)</th>
+                    <th>@Html.DisplayNameFor(model => model.numberofItems)</th>
+                    <th>@Html.DisplayNameFor(model => model.Goodname)</th>
+                    <th>@Html.DisplayNameFor(model => model.Gooddescription)</th>
+                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                    <th>@Html.DisplayNameFor(model => model.DonatorsName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Date)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.GID)</td>
+                        <td>@Html.DisplayFor(modelItem => item.numberofItems)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Goodname)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Gooddescription)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DonatorsName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>
+            <a asp-action="AdminHome">Back to Dashboard</a>
+        </p>
+    </div>
+
+</body>
+</html>

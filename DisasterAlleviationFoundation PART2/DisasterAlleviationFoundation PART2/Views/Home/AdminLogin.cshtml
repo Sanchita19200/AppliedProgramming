@@ -1,0 +1,81 @@
+﻿@model DisasterAlleviationFoundation.Models.AdminUserModel
+
+@{
+    ViewData["Title"] = "AdminLogin";
+}
+
+<style>
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .register-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .register-link .btn-dark:hover {
+            color: purple;
+            background-color: mediumpurple;
+            border-color: white;
+        }
+    }
+</style>
+
+<h1 class="text-center">Admin Login</h1>
+
+<h4 class="text-center">Authorized Users Login here</h4>
+<hr />
+
+<div class="center-container">
+    <div class="login-form">
+        <form asp-action="AdminLogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group text-center">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="text-center mt-3">
+    <a asp-action="Login">Back to Login</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

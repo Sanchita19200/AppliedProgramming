@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Styles -->
+    <style>
+        body {
+
+            background-color: #923cb5;
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/579/773/179/lightning-wtorm-purple-sky-orange-sky-wallpaper-preview.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            width: 100%;
+            text-align: center;
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+        }
+
+        div, th, td, p {
+            color: white;
+        }
+
+        nav, .container {
+            text-align: center;
+        }
+
+        .navbar {
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/579/773/179/lightning-wtorm-purple-sky-orange-sky-wallpaper-preview.jpg');
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            background-size: cover;
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: white !important; /* Change the color of the brand text */
+        }
+
+        .navbar-nav .nav-link {
+            text-align: center;
+            margin: 0 10px;
+            color: white !important; /* Change the color of the nav links */
+        }
+
+        .navbar-toggler-icon {
+            text-align: center;
+        }
+
+        /* Custom Styles */
+        .btn-warning {
+            opacity: 0.7; /* Adjust the opacity value as needed */
+            background-color: white;
+        }
+
+            .btn-warning:hover {
+                color: purple;
+                background-color: mediumpurple;
+                border-color: white;
+            }
+    </style>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Disaster Alleviation Foundation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DisasterAlleviationFoundation_PART2.styles.css" asp-append-version="true" />
+
+    <link rel="icon" href="https://www.impact.upenn.edu/wp-content/uploads/2023/02/disaster-relife.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.impact.upenn.edu/wp-content/uploads/2023/02/disaster-relife.jpg" type="image/x-icon">
+
+
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <!-- Navbar Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Content -->
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav mx-auto">
+                        <!-- Navigation Links -->
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                        <!-- Hide "Login" and "AdminLogin" if a user or admin is logged in -->
+                        @if (@DisasterAlleviationFoundation_PART2.Controllers.HomeController.Username == "" && @DisasterAlleviationFoundation_PART2.Controllers.HomeController.UserID == ""
+                        && (@DisasterAlleviationFoundation_PART2.Controllers.HomeController.AdminUsername == "" || @DisasterAlleviationFoundation_PART2.Controllers.HomeController.AdminID == ""))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminLogin">Admin Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Contact Us</a>
+                            </li>
+                        }
+
+                      
+
+                        <!-- User Links -->
+                        @if (@DisasterAlleviationFoundation_PART2.Controllers.HomeController.Username != "" && @DisasterAlleviationFoundation_PART2.Controllers.HomeController.UserID != "")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Home">User Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
+                        <!-- Admin Links -->
+                        @if (@DisasterAlleviationFoundation_PART2.Controllers.HomeController.AdminUsername != "" && @DisasterAlleviationFoundation_PART2.Controllers.HomeController.AdminID != "")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminHome">Admin Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Sanchita Singh ST10097535 - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

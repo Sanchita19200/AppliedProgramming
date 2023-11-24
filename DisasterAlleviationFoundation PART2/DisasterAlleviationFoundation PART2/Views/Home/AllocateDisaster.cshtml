@@ -1,0 +1,71 @@
+﻿@model DisasterAlleviationFoundation.Models.DisasterModel
+
+@{
+    ViewData["Title"] = "AllocateDisaster";
+}
+<style>
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
+
+    .login-form {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .register-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .register-link .btn-dark:hover {
+            color: purple;
+            background-color: mediumpurple;
+            border-color: white;
+        }
+
+    }
+</style>
+
+<h1>AllocateDisaster</h1>
+<br></br>
+
+<h2>Available Balance: @ViewBag.TotalBalance</h2>
+
+<h5>Current Disasters in need of Funding</h5>
+<p>@ViewBag.UserList</p>
+
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AllocateDisaster">
+            <br />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Disaster_id" class="control-label"></label>
+                <input asp-for="Disaster_id" class="form-control" />
+                <span asp-validation-for="Disaster_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AllocationAmount" class="control-label"></label>
+                <input asp-for="AllocationAmount" class="form-control" />
+                <span asp-validation-for="AllocationAmount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Allocate Funds" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="">Back to Dashboard</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
